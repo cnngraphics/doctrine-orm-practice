@@ -1,19 +1,21 @@
 <?php
+// bootstrap.php
 
-use Doctrine\ORM\Tool\Setup;
+use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 
 require_once "vendor/autoload.php";
 
-// Create a Default Doctrine ORM configuration for annotations
+// Create a simple "default" Doctrine ORM configuration for Annotations
 $isDevMode = true;
 
-$config = Setup::createAnnotationMetaDataConfiguration(array(__DIR__."/src"), $isDevMode);
+$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/src"), $isDevMode);
 
+// database configuration parameters
 $conn = array(
-    'driver' => "pdo_sqlite",
-    'path' => '/db.sqlite',
+    'driver' => 'pdo_sqlite',
+    'path' => __DIR__ . '/db.sqlite',
 );
 
-// obtainig the entity Manager
-$entityManager= EntityManager::create($conn, $config);
+// obtaining the entity manager
+$entityManager = EntityManager::create($conn, $config);
